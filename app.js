@@ -41,17 +41,33 @@ class Dino {
 
     }
 }
-
 // Create Dino Objects
 
 
 // Create Human Object
+class human {
+    constructor(name, height, weight, diet) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.diet = diet;
+        this.image = "./human.png";
+
+    }
+}
 
 // Use IIFE to get human data from form
 (function () {
     readJson();
-})();
+    document.querySelector("#btn").addEventListener("click", function () {
+        const humanName = document.querySelector("#name").value;
+        const humanHeight = Number(document.querySelector("#feet").value) * 12 + Number(document.querySelector("#inches").value);
+        const humanWeight = Number(document.querySelector("#weight").value);
+        const humanDiet = document.querySelector("#diet").value;
+        const HumanObj = new human(humanName, humanHeight, humanWeight, humanDiet);
 
+    });
+})();
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
 
