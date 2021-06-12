@@ -1,32 +1,56 @@
 // reading Json file Function
 function readJson() {
+    const dinoArray = [];
     fetch('./dino.json').then(response => {
         return response.json();
     }).then(data => {
         // Work with JSON data here
-        console.log(data);
+        // console.log(data.Dinos);
+
+        for (var i = 0; i < data.Dinos.length; i++) {
+            // console.log(data.Dinos.species);
+            newObj = new Dino(
+                data.Dinos[i].species,
+                data.Dinos[i].weight,
+                data.Dinos[i].height,
+                data.Dinos[i].fact,
+                data.Dinos[i].image
+            )
+            dinoArray.push(newObj);
+        }
+
     }).catch(err => {
         // Do something for an error here
-        console.log('File not present');
+        console.log('Json File not present to read');
     });
+    console.log(dinoArray);
+    return dinoArray
 }
 
 
 
 // Create Dino Constructor
 class Dino {
-    constructor() {}
+    constructor(species, weight, height, diet, fact, image) {
+        this.species = species;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+        this.fact = fact;
+        this.image = image;
+
+    }
 }
-(function () {
-    readJson();
-})();
+
 // Create Dino Objects
 
 
 // Create Human Object
 
 // Use IIFE to get human data from form
-
+(function () {
+    readJson();
+})();
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
